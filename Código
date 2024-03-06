@@ -575,9 +575,10 @@ body {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
- // Variables para mostrar el creador y la versión del juego
+
+// Variables para mostrar el creador y la versión del juego
 const creador = '<p><strong style="color: black;">Creador:</strong> 👨‍💻 Andrés Álvarez</p>';
-const version = '<p><strong style="color: black;">Versión:</strong> 🔢 0.2.0</p>';
+const version = '<p><strong style="color: black;">Versión:</strong> 🔢 0.2.1</p>';
 
 // Función para preguntar el nombre al usuario
 function preguntarNombre() {
@@ -609,7 +610,7 @@ function preguntarNombre() {
                 return new Promise((resolve) => {
                     setTimeout(() => {
                         if (nombre === '') {
-                            Swal.showValidationMessage('¡Ups! Parece que olvidaste ingresar tu nombre. Por favor, escríbelo.');
+                            Swal.showValidationMessage('Por favor, ingresa tu nombre.');
                         }
                         resolve(nombre);
                     }, 500);
@@ -627,7 +628,7 @@ function preguntarNombre() {
 // Función para mostrar las instrucciones del juego
 function mostrarInstrucciones(nombre) {
     Swal.fire({
-        title: `¡Hola, ${nombre}! Bienvenido al emocionante mundo del Sudoku. 🎉`,
+        title: `¡Hola, ${nombre}! ¡Bienvenido al emocionante mundo del Sudoku! 🎉`,
         html: `
             <div class="container">
                 <div class="row">
@@ -653,39 +654,31 @@ function mostrarInstrucciones(nombre) {
             cancelButton: 'btn btn-secondary animate__animated animate__fadeIn'
         }
     }).then(() => {
-        mostrarMensajePersonalizado(nombre);
+        mostrarAnimacionBienvenida(nombre);
     });
 }
 
-// Función para mostrar el mensaje personalizado
-function mostrarMensajePersonalizado(nombre) {
-    const contenedorMensaje = document.createElement('div');
-    contenedorMensaje.classList.add('animate__animated', 'animate__bounceIn', 'mensaje-personalizado');
-    contenedorMensaje.innerHTML = `
-        <p class="lead" style="font-size: 20px; color: #FF5733;">¡Hola, Querido(a)  ${nombre}! 🌟</p>
-        <p class="lead" style="font-size: 18px;">¡Nos alegra mucho que juegues nuestro juego! 🎉</p>
-        <p class="lead" style="font-size: 18px;">¡Tu interacción y jugabilidad nos emocionan mucho! 🚀</p>
-        <p class="lead" style="font-size: 18px;">¡Gracias por jugar esta versión 0.2.0! 👏</p>
-    `;
+// Función para mostrar la animación de bienvenida
+function mostrarAnimacionBienvenida(nombre) {
     Swal.fire({
-        html: contenedorMensaje,
-        icon: 'info',
+        title: `¡Hola, ${nombre}!`,
+        html: `Gracias por jugar esta versión 0.2.1.<br>Su jugabilidad e interacción nos ayuda a mejorar cada día más.`,
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+        timer: 5000,
         customClass: {
             title: 'h3 animate__animated animate__fadeIn',
             content: 'text-left animate__animated animate__fadeIn',
             confirmButton: 'btn btn-primary animate__animated animate__fadeIn'
-        },
-        timer: 10000, // Duración en milisegundos (10 segundos)
-        timerProgressBar: true, // Muestra una barra de progreso
-        allowOutsideClick: false // Evita que el usuario cierre la alerta haciendo clic fuera de ella
+        }
     });
 }
 
 // Función para mostrar la alerta de calificación
-function mostrarAlertaCalificacion() {
+function mostrarAlertaCalificacionManual() {
     Swal.fire({
         title: '¡Gracias por jugar!',
-        html: '¿Cuál es tu calificación para el juego? 😊🌟',
+        html: '¿Qué calificación le darías a nuestro juego? 😊🌟',
         icon: 'question',
         showCancelButton: true,
         confirmButtonText: 'Enviar',
@@ -713,7 +706,7 @@ function mostrarAlertaCalificacion() {
                 title: '¡Gracias por tu calificación! 🌟',
                 text: '¡Nos alegra mucho que hayas disfrutado del juego! 😊🎉',
                 icon: 'success',
-                confirmButtonText: 'Cerrar',
+                confirmButtonText: 'Aceptar😊',
                 imageUrl: 'https://raw.githubusercontent.com/AndresAlvarezmonvsyo/Im-genes/main/_e588f8ed-9ce4-4c93-adda-082c0e14b5f6.jpeg',
                 imageWidth: 200,
                 imageHeight: 200,
@@ -749,7 +742,7 @@ function mostrarAlertaCalificacion() {
                         title: '¡Gracias por tu sugerencia! 🙌',
                         text: '¡Esto nos ayuda a mejorar cada día más! 😊🚀',
                         icon: 'success',
-                        confirmButtonText: 'Cerrar',
+                        confirmButtonText: 'Aceptar',
                         imageUrl: 'https://raw.githubusercontent.com/AndresAlvarezmonvsyo/Im-genes/main/_e588f8ed-9ce4-4c93-adda-082c0e14b5f6.jpeg',
                         imageWidth: 200,
                         imageHeight: 200,
@@ -765,9 +758,10 @@ function mostrarAlertaCalificacion() {
     });
 }
 
-preguntarNombre();
-
-             
+// Llamar a la función para preguntar el nombre al usuario
+preguntarNombre();                
+         
+                   
   
         
  
@@ -1807,4 +1801,3 @@ updateCanvas();
 </html>
 
 
- 
